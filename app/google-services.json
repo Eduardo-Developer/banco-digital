@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "550818512188",
+    "project_id": "banco-digital-b7347",
+    "storage_bucket": "banco-digital-b7347.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550818512188:android:96b78c98edabc8421fb239",
+        "android_client_info": {
+          "package_name": "com.edudev.bancodigital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550818512188-70tr513aj6cprmtu7qtuvlf0i7u2tiaa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edudev.bancodigital",
+            "certificate_hash": "289e56a3f55771e7aea64339344bc6cd5367e73e"
+          }
+        },
+        {
+          "client_id": "550818512188-n13j7de2j4fs02nmsh7jrc7fvovqmfno.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGn0R9FvX-aSFqbNcPpz-kiSr3krZV0Xs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550818512188-n13j7de2j4fs02nmsh7jrc7fvovqmfno.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
