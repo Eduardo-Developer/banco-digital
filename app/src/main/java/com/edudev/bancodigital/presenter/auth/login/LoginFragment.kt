@@ -9,7 +9,9 @@ import android.widget.Toast
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.databinding.FragmentLoginBinding
 import com.edudev.bancodigital.databinding.FragmentSplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null

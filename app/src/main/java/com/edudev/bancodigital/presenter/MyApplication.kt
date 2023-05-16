@@ -1,7 +1,6 @@
 package com.edudev.bancodigital.presenter
 
 import android.app.Application
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import dagger.hilt.android.HiltAndroidApp
