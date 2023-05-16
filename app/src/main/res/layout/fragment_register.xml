@@ -32,7 +32,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Criar conta" />
+                    android:text="Criar conta"
+                    android:textColor="@color/color_default" />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
@@ -57,15 +58,14 @@
 
             <EditText
                 android:id="@+id/edit_name"
+                style="@style/Theme.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/bg_edit_around"
                 android:drawableStart="@drawable/ic_user_line"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/color_default"
-                android:hint="Digite seu nome"
-                android:padding="14dp" />
+                android:hint="Digite seu nome" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -80,10 +80,10 @@
 
             <EditText
                 android:id="@+id/edit_email"
+                style="@style/Theme.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/bg_edit_around"
                 android:drawableStart="@drawable/ic_mail_line"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/color_default"
@@ -103,15 +103,14 @@
 
             <EditText
                 android:id="@+id/edit_phone"
+                style="@style/Theme.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/bg_edit_around"
                 android:drawableStart="@drawable/ic_phone_line"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/color_default"
-                android:hint="Digite seu telefone"
-                android:padding="14dp" />
+                android:hint="Digite seu telefone" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -126,15 +125,14 @@
 
             <EditText
                 android:id="@+id/edit_password"
+                style="@style/Theme.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/bg_edit_around"
                 android:drawableStart="@drawable/ic_lock_line"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/color_default"
-                android:hint="Digite uma senha"
-                android:padding="14dp" />
+                android:hint="Digite uma senha" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_send"
@@ -142,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_btn"
-                android:text="Entrar"
+                android:text="CADASTRAR"
                 app:backgroundTint="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -150,18 +148,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
             <ProgressBar
+                android:id="@+id/progress_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:indeterminateTint="@color/color_default"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_send"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                tools:visibility="visible" />
+
         </LinearLayout>
 
     </LinearLayout>

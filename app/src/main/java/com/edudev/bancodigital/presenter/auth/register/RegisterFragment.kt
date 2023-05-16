@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.databinding.FragmentRecoverBinding
 import com.edudev.bancodigital.databinding.FragmentRegisterBinding
+import com.edudev.bancodigital.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +29,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initToolbar(binding.toolbar)
         initListeners()
     }
 
