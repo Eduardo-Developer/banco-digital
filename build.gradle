@@ -1,7 +1,10 @@
 buildscript {
+    ext.hilt_version = '2.44'
+
     dependencies {
         // Add the dependency for the Google services Gradle plugin
         classpath 'com.google.gms:google-services:4.3.15'
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
     }
 }
 
