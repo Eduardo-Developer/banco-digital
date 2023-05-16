@@ -1,8 +1,10 @@
 package com.edudev.bancodigital.data.repository.auth
 
 import com.google.firebase.database.FirebaseDatabase
+import java.lang.reflect.Constructor
+import javax.inject.Inject
 
-class AuthFirebaseDataSourceImpl(
+class AuthFirebaseDataSourceImpl @Inject constructor(
     firebaseDatabase: FirebaseDatabase
 ): AuthFirebaseDataSource {
 
