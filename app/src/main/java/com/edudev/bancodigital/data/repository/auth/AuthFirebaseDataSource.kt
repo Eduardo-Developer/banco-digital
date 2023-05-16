@@ -1,5 +1,7 @@
 package com.edudev.bancodigital.data.repository.auth
 
+import com.edudev.bancodigital.data.model.User
+
 interface AuthFirebaseDataSource {
 
     suspend fun login(
@@ -8,11 +10,8 @@ interface AuthFirebaseDataSource {
     )
 
     suspend fun register(
-        nome: String,
-        email: String,
-        phone: String,
-        password: String
-    )
+        user: User
+    ): User
 
     suspend fun recover(
         email: String,
