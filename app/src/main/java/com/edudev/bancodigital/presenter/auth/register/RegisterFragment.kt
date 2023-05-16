@@ -9,7 +9,9 @@ import android.widget.Toast
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.databinding.FragmentRecoverBinding
 import com.edudev.bancodigital.databinding.FragmentRegisterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
