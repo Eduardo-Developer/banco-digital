@@ -8,7 +8,7 @@ import javax.inject.Inject
 class RegisterUsecase @Inject constructor(
     private val authFirebaseDataSource: AuthFirebaseDataSource
         ) {
-    suspend operator fun invoke(user: User) : User {
-        return authFirebaseDataSource.register(user)
+    suspend operator fun invoke(name: String, email: String, phone: String, password: String) : User {
+        return authFirebaseDataSource.register(name, email, phone, password)
     }
 }
