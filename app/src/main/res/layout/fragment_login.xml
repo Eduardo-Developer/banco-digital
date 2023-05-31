@@ -26,7 +26,8 @@
                 android:drawableStart="@drawable/ic_user_line"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/color_default"
-                android:hint="E-mail"
+                android:hint="@string/text_hint_email"
+                android:inputType="textEmailAddress"
                 android:padding="14dp"
                 android:textColorHint="@color/color_hint"
                 app:layout_constraintBottom_toTopOf="@+id/edit_password"
@@ -44,8 +45,9 @@
                 android:background="@drawable/bg_edit"
                 android:drawableStart="@drawable/ic_lock_line"
                 android:drawablePadding="8dp"
+                android:inputType="textPassword"
                 android:drawableTint="@color/color_default"
-                android:hint="Password"
+                android:hint="@string/text_hint_password_login_fragment"
                 android:padding="14dp"
                 android:textColorHint="@color/color_hint"
                 app:layout_constraintBottom_toTopOf="@+id/btn_login"
@@ -59,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_btn"
-                android:text="Entrar"
+                android:text="@string/text_btn_login_fragment"
                 app:backgroundTint="@null"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Criar Conta"
+                    android:text="@string/text_btn_register_login_fragment"
                     android:textColor="@color/color_default" />
 
                 <TextView
