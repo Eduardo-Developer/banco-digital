@@ -13,9 +13,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.data.model.User
+import com.edudev.bancodigital.data.model.Wallet
 import com.edudev.bancodigital.databinding.FragmentRecoverBinding
 import com.edudev.bancodigital.databinding.FragmentRegisterBinding
 import com.edudev.bancodigital.presenter.profile.ProfileViewModel
+import com.edudev.bancodigital.presenter.wallet.WalletViewModel
 import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.initToolbar
@@ -29,6 +31,7 @@ class RegisterFragment : Fragment() {
 
     private val registerViewModel : RegisterViewModel by viewModels()
     private val profileViewModel : ProfileViewModel by viewModels()
+    private val walletViewModel : WalletViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -106,6 +109,26 @@ class RegisterFragment : Fragment() {
 
     private fun saveProfile(user: User){
         profileViewModel.saveProfile(user).observe(viewLifecycleOwner) { stateView ->
+            when (stateView) {
+                is StateView.Loading -> {}
+
+                is StateView.Sucess -> {
+                    initWallet()
+                }
+
+                is StateView.Error -> {
+                    binding.progressRegister.isVisible = false
+                    Log.i("INFOTESTE", "loginUser: ${stateView.message}")
+                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message ?: "")))
+                }
+            }
+        }
+    }
+
+    private fun initWallet(){
+        walletViewModel.initWallet(Wallet(
+            userId = FirebaseHelper.getUserId()
+        )).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {}
 
