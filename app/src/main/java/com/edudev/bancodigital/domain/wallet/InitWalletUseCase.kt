@@ -4,7 +4,7 @@ import com.edudev.bancodigital.data.model.Wallet
 import com.edudev.bancodigital.data.repository.wallet.WalletDataSourceImpl
 import javax.inject.Inject
 
-class InitWalletUsecase @Inject constructor(
+class InitWalletUseCase @Inject constructor(
     private val walletDataSource: WalletDataSourceImpl
 ) {
     suspend operator fun invoke(wallet: Wallet) {

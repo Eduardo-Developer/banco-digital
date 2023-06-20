@@ -49,5 +49,10 @@
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
     <string name="text_error_generic">Ocorreu um erro, tente novamente mais tarde.</string>
 
+    <!--    Home Fragment-->
+    <string name="text_formated_value">R$: %1$s</string>
+
+
+
 
 </resources>
