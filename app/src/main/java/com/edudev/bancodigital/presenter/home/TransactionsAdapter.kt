@@ -1,18 +1,25 @@
 package com.edudev.bancodigital.presenter.home
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.edudev.bancodigital.R
+import com.edudev.bancodigital.data.enum.TransactionOperation
+import com.edudev.bancodigital.data.enum.TransactionType
 import com.edudev.bancodigital.data.model.Transaction
-import com.edudev.bancodigital.databinding.LastTransactionItemBinding
+import com.edudev.bancodigital.databinding.TransactionItemBinding
 import com.edudev.bancodigital.util.GetMask
 
 
-class LastTransactionsAdapter(
+class TransactionsAdapter(
+    private val context: Context,
     private val transactionSelected: (Transaction) -> Unit
-) : ListAdapter<Transaction, LastTransactionsAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<Transaction, TransactionsAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Transaction>() {
@@ -34,7 +41,7 @@ class LastTransactionsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LastTransactionItemBinding.inflate(
+            TransactionItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -44,22 +51,26 @@ class LastTransactionsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val transaction = getItem(position)
-        holder.binding.textTransactionTypeDescription.text = transaction.description
-        holder.binding.textTransactionType.text = when(transaction.description) {
-            "TRANSFERENCIA" -> "T"
-            "RECARGA" -> "R"
-            "DEPOSITO" -> "D"
-
-            else -> {
-                ""
+        transaction.operation?.let {
+            holder.binding.textTransactionTypeDescription.text = TransactionOperation.getOperation(it)
+            holder.binding.textTransactionType.text = TransactionType.getType(it).toString()
+            holder.binding.textTransactionType.backgroundTintList = if (transaction.type == TransactionType.CASH_IN) {
+                ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_cash_in))
+            } else {
+                ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_cash_out))
             }
         }
-        holder.binding.textTransactionValue.text = GetMask.getFormatedValue(transaction.value)
+
+        holder.binding.textTransactionValue.text = GetMask.getFormatedValue(transaction.amount)
         holder.binding.textTransactionDate.text = GetMask.getFormatedDate(transaction.date, GetMask.DAY_MONTH_YEAR_HOUR_MINUTE)
+
+        holder.itemView.setOnClickListener{
+            transactionSelected(transaction)
+        }
 
     }
 
-    inner class ViewHolder(val binding: LastTransactionItemBinding) :
+    inner class ViewHolder(val binding: TransactionItemBinding) :
         RecyclerView.ViewHolder(binding.root)
 
 }
