@@ -14,6 +14,7 @@ import com.edudev.bancodigital.data.model.Deposit
 import com.edudev.bancodigital.databinding.FragmentDepositReceiptBinding
 import com.edudev.bancodigital.util.GetMask
 import com.edudev.bancodigital.util.StateView
+import com.edudev.bancodigital.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +39,7 @@ class DepositReceiptFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initToolbar(binding.toolbar, args.homeAsUpEnabled, light = false)
         getDeposit()
         initListener()
     }

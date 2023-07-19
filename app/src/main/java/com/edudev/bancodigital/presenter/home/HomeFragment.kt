@@ -9,11 +9,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.edudev.bancodigital.R
+import com.edudev.bancodigital.data.enum.TransactionOperation
 import com.edudev.bancodigital.data.enum.TransactionType
 import com.edudev.bancodigital.data.model.Transaction
-import com.edudev.bancodigital.data.model.Wallet
 import com.edudev.bancodigital.databinding.FragmentHomeBinding
-import com.edudev.bancodigital.databinding.FragmentLoginBinding
 import com.edudev.bancodigital.util.GetMask
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.showBottomSheet
@@ -46,6 +45,15 @@ class HomeFragment : Fragment() {
     private fun configRecyclerView() {
         transactionsAdapter = TransactionsAdapter(requireContext()) { transaction ->
 
+            when(transaction.operation) {
+                TransactionOperation.DEPOSIT -> {
+                    val action = HomeFragmentDirections.actionHomeFragmentToDepositReceiptFragment(transaction.id, true)
+
+                    findNavController().navigate(action)
+                }
+                else -> {
+                }
+            }
         }
         with(binding.rvTransactions) {
             setHasFixedSize(true)
