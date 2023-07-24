@@ -6,7 +6,9 @@ import com.google.firebase.auth.FirebaseAuth
 class FirebaseHelper {
 
     companion object {
-        fun isAuthenticated() = FirebaseAuth.getInstance().currentUser != null
+
+        fun getAuth() = FirebaseAuth.getInstance()
+        fun isAuthenticated() = getAuth().currentUser != null
 
         fun getUserId() = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
