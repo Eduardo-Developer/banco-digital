@@ -62,7 +62,9 @@
     <string name="text_amount_transaction_deposit_receipt_fragment">Valor depósito</string>
     <string name="text_btn_transaction_deposit_receipt_fragment">continuar</string>
 
+    <!--    ExtractFragment-->
 
+    <string name="text_title_toolbar_exctract_fragment">Extrato</string>
 
 
 

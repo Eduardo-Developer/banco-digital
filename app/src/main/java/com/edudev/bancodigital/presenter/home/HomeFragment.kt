@@ -13,6 +13,7 @@ import com.edudev.bancodigital.data.enum.TransactionOperation
 import com.edudev.bancodigital.data.enum.TransactionType
 import com.edudev.bancodigital.data.model.Transaction
 import com.edudev.bancodigital.databinding.FragmentHomeBinding
+import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.GetMask
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.showBottomSheet
@@ -81,6 +82,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun initListener() {
+        binding.btnLogout.setOnClickListener {
+            FirebaseHelper.getAuth().signOut()
+            findNavController().navigate(R.id.action_homeFragment_to_authentication)
+        }
+        binding.btnShowAll.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
+        }
+
+        binding.btnCardExtract.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
+        }
+
         binding.cardDeposit.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
         }
