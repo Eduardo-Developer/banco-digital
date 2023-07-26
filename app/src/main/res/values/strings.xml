@@ -39,6 +39,17 @@
     <string name="text_btn_send_register_fragment">Cadastrar</string>
     <string name="text_title_toolbar_register_fragment">Criar conta</string>
 
+    <!-- Profile Fragment  -->
+    <string name="text_label_name_profile_fragment">Nome</string>
+    <string name="text_label_email_profile_fragment">Email</string>
+    <string name="text_label_phone_profile_fragment">Telefone</string>
+    <string name="text_hint_name_profile_fragment">Digite seu nome.</string>
+    <string name="text_hint_email_profile_fragment">Digite seu e-mail.</string>
+    <string name="text_hint_phone_profile_fragment">Digite seu telefone.</string>
+    <string name="text_btn_send_profile_fragment">Salvar</string>
+    <string name="text_title_toolbar_profile_fragment">Perfil</string>
+    <string name="text_message_save_success">Perfil salvo com sucesso!</string>
+
 
     <!--    Erros Firebase Authentication-->
     <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>

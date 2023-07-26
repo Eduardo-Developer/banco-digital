@@ -16,6 +16,7 @@ import com.edudev.bancodigital.data.model.Deposit
 import com.edudev.bancodigital.data.model.Transaction
 import com.edudev.bancodigital.databinding.FragmentDepositFormBinding
 import com.edudev.bancodigital.databinding.FragmentRegisterBinding
+import com.edudev.bancodigital.util.BaseFragment
 import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.initToolbar
@@ -24,7 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class DepositFormFragment : Fragment() {
+class DepositFormFragment : BaseFragment() {
 
     private var _binding: FragmentDepositFormBinding? = null
     private val binding get() = _binding!!
@@ -55,6 +56,7 @@ class DepositFormFragment : Fragment() {
         if (amount.isNotEmpty()) {
             val deposit = Deposit(amount = amount.toFloat())
             saveDeposit(deposit)
+            hideKeyboard()
         } else {
             Toast.makeText(requireContext(), "Digite um valor", Toast.LENGTH_LONG).show()
         }

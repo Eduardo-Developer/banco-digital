@@ -3,10 +3,12 @@ package com.edudev.bancodigital.data.model
 import com.google.firebase.database.Exclude
 
 data class User(
-    val id: String? = "",
-    val name: String = "",
-    val email: String = "",
-    val phone: String = "",
+    var id: String? = "",
+    var name: String? = "",
+    val email: String? = "",
+    var phone: String? = "",
     @get:Exclude
-    val password: String
+    val password: String? = ""
 )
+
+
