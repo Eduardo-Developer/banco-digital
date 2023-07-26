@@ -2,7 +2,10 @@ package com.edudev.bancodigital.data.repository.profile
 
 import com.edudev.bancodigital.data.model.User
 import com.edudev.bancodigital.util.FirebaseHelper
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
@@ -26,6 +29,23 @@ class ProfileDataSourceImpl @Inject constructor(
                 }
             }
 
+        }
+    }
+
+    override suspend fun getProfile(): User {
+        return suspendCoroutine { continuation ->
+            profileReference.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val user = snapshot.getValue(User::class.java)
+                    user?.let {
+                        continuation.resumeWith(Result.success(it))
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    continuation.resumeWith(Result.failure(error.toException()))
+                }
+            })
         }
     }
 }

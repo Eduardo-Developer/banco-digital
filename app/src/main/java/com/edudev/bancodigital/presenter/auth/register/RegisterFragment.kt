@@ -18,6 +18,7 @@ import com.edudev.bancodigital.databinding.FragmentRecoverBinding
 import com.edudev.bancodigital.databinding.FragmentRegisterBinding
 import com.edudev.bancodigital.presenter.profile.ProfileViewModel
 import com.edudev.bancodigital.presenter.wallet.WalletViewModel
+import com.edudev.bancodigital.util.BaseFragment
 import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.initToolbar
@@ -25,7 +26,7 @@ import com.edudev.bancodigital.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RegisterFragment : Fragment() {
+class RegisterFragment : BaseFragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 

@@ -15,13 +15,14 @@ import com.edudev.bancodigital.R
 import com.edudev.bancodigital.data.model.User
 import com.edudev.bancodigital.databinding.FragmentLoginBinding
 import com.edudev.bancodigital.databinding.FragmentSplashBinding
+import com.edudev.bancodigital.util.BaseFragment
 import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!

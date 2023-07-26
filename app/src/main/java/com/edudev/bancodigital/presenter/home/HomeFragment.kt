@@ -13,6 +13,7 @@ import com.edudev.bancodigital.data.enum.TransactionOperation
 import com.edudev.bancodigital.data.enum.TransactionType
 import com.edudev.bancodigital.data.model.Transaction
 import com.edudev.bancodigital.databinding.FragmentHomeBinding
+import com.edudev.bancodigital.util.BaseFragment
 import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.GetMask
 import com.edudev.bancodigital.util.StateView
@@ -20,7 +21,7 @@ import com.edudev.bancodigital.util.showBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -96,6 +97,10 @@ class HomeFragment : Fragment() {
 
         binding.cardDeposit.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_depositFormFragment)
+        }
+
+        binding.cardProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
     }
 
