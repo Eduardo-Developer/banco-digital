@@ -13,6 +13,7 @@ import com.edudev.bancodigital.data.enum.TransactionOperation
 import com.edudev.bancodigital.data.enum.TransactionType
 import com.edudev.bancodigital.data.model.Transaction
 import com.edudev.bancodigital.databinding.FragmentHomeBinding
+import com.edudev.bancodigital.presenter.features.extract.ExtractFragmentDirections
 import com.edudev.bancodigital.util.BaseFragment
 import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.GetMask
@@ -53,6 +54,12 @@ class HomeFragment : BaseFragment() {
 
                     findNavController().navigate(action)
                 }
+
+                TransactionOperation.RECHARGE -> {
+                    val action = HomeFragmentDirections.actionHomeFragmentToRechargeReceiptFragment(transaction.id)
+                    findNavController().navigate(action)
+                }
+
                 else -> {
                 }
             }
@@ -83,6 +90,10 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initListener() {
+
+        binding.cardRecharge.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_rechargeFormFragment)
+        }
         binding.btnLogout.setOnClickListener {
             FirebaseHelper.getAuth().signOut()
             findNavController().navigate(R.id.action_homeFragment_to_authentication)

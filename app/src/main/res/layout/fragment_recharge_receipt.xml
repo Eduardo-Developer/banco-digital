@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fillViewport="true"
-    tools:context=".presenter.features.deposit.DepositReceiptFragment">
+    tools:context=".presenter.features.recharge.RechargeReceiptFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Recibo"
+                    android:text="@string/text_title_toolbar_recharge_receipt_fragment"
                     android:textColor="@color/color_default" />
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
-            android:text="@string/text_title_deposit_receipt_fragment"
+            android:text="@string/text_title_recharge_receipt_fragment"
             android:textAlignment="center"
             android:textColor="@color/color_sucess"
             android:textSize="24sp"
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="24dp"
-            android:text="@string/text_sub_deposit_receipt_fragment"
+            android:text="@string/text_sub_recharge_receipt_fragment"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
@@ -103,19 +103,38 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="@string/text_date_transaction_deposit_receipt_fragment"
+            android:text="@string/text_date_transaction_recharge_receipt_fragment"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <TextView
+            android:id="@+id/lblRechargeValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/text_amount_transaction_deposit_receipt_fragment"
+            android:text="@string/text_amount_transaction_recharge_receipt_fragment"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@+id/textView11"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/lblNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/text_amount_phone_recharge_receipt_fragment"
+            app:layout_constraintStart_toStartOf="@+id/lblRechargeValue"
+            app:layout_constraintTop_toBottomOf="@+id/lblRechargeValue" />
+
+        <TextView
+            android:id="@+id/txtNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="(21) 99711-5587"
+            app:layout_constraintEnd_toEndOf="@+id/text_amount_recharge"
+            app:layout_constraintTop_toBottomOf="@+id/text_amount_recharge" />
 
         <TextView
             android:id="@+id/text_date_transaction"
@@ -130,7 +149,7 @@
             tools:text="31/12/2023" />
 
         <TextView
-            android:id="@+id/text_amount_transaction"
+            android:id="@+id/text_amount_recharge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -138,7 +157,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/text_date_transaction"
             app:layout_constraintTop_toBottomOf="@+id/text_date_transaction"
-            tools:text="R$: 1.500,00" />
+            tools:text="R$: 20,00" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnContinue"
