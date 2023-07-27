@@ -73,10 +73,27 @@
     <string name="text_amount_transaction_deposit_receipt_fragment">Valor depósito</string>
     <string name="text_btn_transaction_deposit_receipt_fragment">continuar</string>
 
+    <!--    RechargeReceiptFragment-->
+    <string name="text_title_toolbar_recharge_receipt_fragment">Recibo</string>
+    <string name="text_title_recharge_receipt_fragment">Recarga efetuada\n com sucesso!</string>
+    <string name="text_sub_recharge_receipt_fragment">Seu crédito ficará disponível em alguns minutos</string>
+    <string name="text_code_transaction_recharge_receipt_fragment">Código Transação</string>
+    <string name="text_date_transaction_recharge_receipt_fragment">Data recarga</string>
+    <string name="text_amount_transaction_recharge_receipt_fragment">Valor recarga</string>
+    <string name="text_amount_phone_recharge_receipt_fragment">Número</string>
+    <string name="text_btn_transaction_recharge_receipt_fragment">continuar</string>
+
+    <!--    RechargeFormFragment-->
+    <string name="text_title_toolbar_recharge_form_fragment">Recarga</string>
+    <string name="text_title_amomunt_form_recharge_fragment">Valor da recarga</string>
+    <string name="text_label_phone_number_form_recharge_fragment">Insira o número</string>
+    <string name="text_hint_phone_number_recharge_form_fragment">Número</string>
+    <string name="text_btn_recharge_form_fragment">Confirmar</string>
+
+
     <!--    ExtractFragment-->
 
     <string name="text_title_toolbar_exctract_fragment">Extrato</string>
-
 
 
 </resources>

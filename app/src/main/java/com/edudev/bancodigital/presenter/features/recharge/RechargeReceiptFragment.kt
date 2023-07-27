@@ -1,4 +1,4 @@
-package com.edudev.bancodigital.presenter.features.deposit
+package com.edudev.bancodigital.presenter.features.recharge
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,44 +11,47 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.data.model.Deposit
+import com.edudev.bancodigital.data.model.Recharge
 import com.edudev.bancodigital.databinding.FragmentDepositReceiptBinding
+import com.edudev.bancodigital.databinding.FragmentRechargeReceiptBinding
 import com.edudev.bancodigital.util.GetMask
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DepositReceiptFragment : Fragment() {
-
-    private var _binding: FragmentDepositReceiptBinding? = null
+class RechargeReceiptFragment : Fragment() {
+    private var _binding: FragmentRechargeReceiptBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: DepositReceiptViewModel by viewModels()
+    private val rechargeReceiptViewModel : RechargeReceiptViewModel by viewModels()
 
-    private val args: DepositReceiptFragmentArgs by navArgs()
+    private val args : RechargeReceiptFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentDepositReceiptBinding.inflate(inflater, container, false)
+        _binding = FragmentRechargeReceiptBinding.inflate(inflater, container, false)
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initToolbar(binding.toolbar, args.homeAsUpEnabled, light = false)
-        getDeposit()
+        initToolbar(binding.toolbar, light = false)
+        getRecharge()
         initListener()
     }
 
-    private fun getDeposit() {
-        viewModel.getDeposit(args.idDeposit).observe(viewLifecycleOwner) { stateView ->
+    private fun getRecharge() {
+        rechargeReceiptViewModel.getRecharge(args.idRecharge).observe(viewLifecycleOwner) { stateView ->
             when(stateView) {
                 is StateView.Loading -> {
-                    
+
                 }
 
                 is StateView.Sucess -> {
@@ -69,10 +72,11 @@ class DepositReceiptFragment : Fragment() {
         }
     }
 
-    private fun configData(deposit: Deposit) {
-        binding.textCodeTransaction.text = deposit.id
-        binding.textDateTransaction.text = GetMask.getFormatedDate(deposit.date, GetMask.DAY_MONTH_YEAR_HOUR_MINUTE)
-        binding.textAmountTransaction.text = getString(R.string.text_formated_value, GetMask.getFormatedValue(deposit.amount))
+    private fun configData(recharge: Recharge) {
+        binding.textCodeTransaction.text = recharge.id
+        binding.textDateTransaction.text = GetMask.getFormatedDate(recharge.date, GetMask.DAY_MONTH_YEAR_HOUR_MINUTE)
+        binding.textAmountRecharge.text = getString(R.string.text_formated_value, GetMask.getFormatedValue(recharge.amount))
+        binding.txtNumber.text = recharge.number
     }
 
     override fun onDestroyView() {
