@@ -71,5 +71,14 @@ dependencies {
     // https://github.com/VicMikhailau/MaskedEditText
     implementation 'io.github.vicmikhailau:MaskedEditText:4.0.7'
 
+    // https://github.com/cheonjaewoong/shapedimageview
+    implementation "io.woong.shapedimageview:shapedimageview:1.4.3"
+
+    // https://github.com/square/picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+    //https://github.com/ParkSangGwon/TedPermission
+    implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
+
 
 }

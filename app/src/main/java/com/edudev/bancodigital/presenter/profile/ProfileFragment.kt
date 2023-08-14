@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.edudev.bancodigital.R
@@ -15,7 +16,10 @@ import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.initToolbar
 import com.edudev.bancodigital.util.showBottomSheet
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.normal.TedPermission
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment() {
@@ -48,6 +52,65 @@ class ProfileFragment : BaseFragment() {
             if (user != null)
                 validateData()
         }
+    }
+
+    private fun checkPermissionCamera() {
+        val permissionlistener: PermissionListener = object : PermissionListener {
+            override fun onPermissionGranted() {
+                Toast.makeText(requireContext(), "Permission Concedida", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onPermissionDenied(deniedPermissions: List<String>) {
+                Toast.makeText(
+                    requireContext(),
+                    "Permissão Negada\n$deniedPermissions",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        showDialogPermissionDenied(
+            permissionlistener = permissionlistener,
+            permission = android.Manifest.permission.CAMERA,
+            R.string.text_message_access_gallery_denied_profile_fragment
+        )
+    }
+
+    private fun checkPermissionGallery() {
+        val permissionlistener: PermissionListener = object : PermissionListener {
+            override fun onPermissionGranted() {
+                Toast.makeText(requireContext(), "Permission Concedida", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onPermissionDenied(deniedPermissions: List<String>) {
+                Toast.makeText(
+                    requireContext(),
+                    "Permissão Negada\n$deniedPermissions",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+        showDialogPermissionDenied(
+            permissionlistener = permissionlistener,
+            permission = android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            R.string.text_message_access_gallery_denied_profile_fragment
+        )
+    }
+
+    private fun showDialogPermissionDenied(
+        permissionlistener: PermissionListener,
+        permission: String,
+        message: Int
+    ){
+        TedPermission.create()
+            .setPermissionListener(permissionlistener)
+            .setDeniedTitle("Permissão negada")
+            .setDeniedMessage(message)
+            .setDeniedCloseButtonText("Não")
+            .setGotoSettingButtonText("Sim")
+            .setPermissions(permission)
+            .check();
+
     }
 
     private fun getProfile() {

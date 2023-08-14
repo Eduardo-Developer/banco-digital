@@ -91,6 +91,10 @@ class HomeFragment : BaseFragment() {
 
     private fun initListener() {
 
+        binding.cardTransfer.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_transferUserListFragment)
+        }
+
         binding.cardRecharge.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_rechargeFormFragment)
         }

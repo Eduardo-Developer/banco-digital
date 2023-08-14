@@ -15,11 +15,13 @@ class ProfileDataSourceImpl @Inject constructor(
 
     private val profileReference = database.reference
         .child("profile")
-        .child(FirebaseHelper.getUserId())
 
     override suspend fun saveProfile(user: User) {
         return suspendCoroutine { continuation ->
-            profileReference.setValue(user).addOnCompleteListener { task ->
+            profileReference
+                .child(FirebaseHelper.getUserId())
+                .setValue(user)
+                .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     continuation.resumeWith(Result.success(Unit))
                 } else {
@@ -34,7 +36,9 @@ class ProfileDataSourceImpl @Inject constructor(
 
     override suspend fun getProfile(): User {
         return suspendCoroutine { continuation ->
-            profileReference.addListenerForSingleValueEvent(object : ValueEventListener {
+            profileReference
+                .child(FirebaseHelper.getUserId())
+                .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val user = snapshot.getValue(User::class.java)
                     user?.let {
@@ -46,6 +50,32 @@ class ProfileDataSourceImpl @Inject constructor(
                     continuation.resumeWith(Result.failure(error.toException()))
                 }
             })
+        }
+    }
+
+    override suspend fun getProfileList(): List<User> {
+        return suspendCoroutine { continuation ->
+            profileReference
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val userList: MutableList<User> = mutableListOf()
+                        for (ds in snapshot.children) {
+                            val user = ds.getValue(User::class.java)
+                            user?.let {
+                                userList.add(it)
+                            }
+                        }
+                        continuation.resumeWith(Result.success(
+                            userList.apply {
+                                removeAll { it.id == FirebaseHelper.getUserId() }
+                            }
+                        ))
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        continuation.resumeWith(Result.failure(error.toException()))
+                    }
+                })
         }
     }
 }
