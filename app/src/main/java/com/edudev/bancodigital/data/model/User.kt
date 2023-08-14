@@ -7,6 +7,7 @@ data class User(
     var name: String? = "",
     val email: String? = "",
     var phone: String? = "",
+    var image: String = "",
     @get:Exclude
     val password: String? = ""
 )

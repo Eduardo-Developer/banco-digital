@@ -36,5 +36,4 @@ abstract class DomainModule {
     abstract fun bindsRechargeDataSource(
         rechargeDataSourceImpl: RechargeDataSourceImpl
     ): RechargeDataSource
-
 }
