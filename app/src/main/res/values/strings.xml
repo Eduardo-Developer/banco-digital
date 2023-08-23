@@ -52,6 +52,10 @@
     <string name="text_message_access_camera_denied_profile_fragment">Para que você capture imagens usando a câmera, precisaremos de permissão. Acesse as configurações de permissões e habilite a permissão.</string>
     <string name="text_message_access_gallery_denied_profile_fragment">Para que você carregue imagens usando a galeria, precisaremos de permissão. Acesse as configurações de permissões e habilite a permissão.</string>
 
+    <string name="text_title_bottom_sheet_profile">Adicionar imagem de perfil</string>
+    <string name="text_message_bottom_sheet_profile">Escolha uma das opções abaixo para definir uma imagem de perfil.</string>
+    <string name="text_button_camera_bottom_sheet_profile">Câmera</string>
+    <string name="text_button_gallery_bottom_sheet_profile">Galeria</string>
 
     <!--    Erros Firebase Authentication-->
     <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>

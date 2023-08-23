@@ -21,20 +21,30 @@
             android:layout_height="match_parent"
             android:padding="16dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/materialCardView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="40dp"
+
+            <FrameLayout
+                android:id="@+id/frame_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
+                <io.woong.shapedimageview.CircleImageView
                     android:id="@+id/image_user"
                     android:layout_width="80dp"
-                    android:layout_height="80dp" />
+                    android:layout_height="80dp"
+                    android:visibility="invisible"
+                    app:border_color="@color/white"
+                    app:border_size="2dp" />
 
-            </com.google.android.material.card.MaterialCardView>
+                <ProgressBar
+                    android:id="@+id/progress_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/white"/>
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/textView3"
@@ -45,7 +55,7 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+                app:layout_constraintTop_toBottomOf="@+id/frame_image" />
 
             <TextView
                 android:id="@+id/text_balance"
@@ -124,7 +134,7 @@
                 android:layout_height="32dp"
                 android:src="@drawable/ic_logout_circle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/materialCardView" />
+                app:layout_constraintTop_toTopOf="@+id/frame_image" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

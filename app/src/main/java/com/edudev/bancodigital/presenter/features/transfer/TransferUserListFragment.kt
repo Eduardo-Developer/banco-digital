@@ -1,21 +1,25 @@
 package com.edudev.bancodigital.presenter.features.transfer
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.edudev.bancodigital.R
-import com.edudev.bancodigital.databinding.FragmentRechargeFormBinding
+import com.edudev.bancodigital.data.model.User
 import com.edudev.bancodigital.databinding.FragmentTransferUserListBinding
-import com.edudev.bancodigital.presenter.features.recharge.RechargeViewModel
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.initToolbar
 import com.edudev.bancodigital.util.showBottomSheet
+import com.ferfalk.simplesearchview.SimpleSearchView
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class TransferUserListFragment : Fragment() {
@@ -24,7 +28,13 @@ class TransferUserListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var transferUserAdapter: TransferUserAdapter
-    private val transferUserListViewModel : TransferUserListViewModel by viewModels()
+    private var profilesList: List<User> = listOf()
+    private val transferUserListViewModel: TransferUserListViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,9 +51,49 @@ class TransferUserListFragment : Fragment() {
         initToolbar(binding.toolbar, light = true)
         initRecyclerView()
         getProfileList()
+        configSearchView()
     }
 
-    private fun initRecyclerView(){
+    private fun configSearchView() {
+        binding.searchView.setOnQueryTextListener(object : SimpleSearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return if (newText.isNotEmpty()) {
+                    val newList = profilesList.filter { it.name!!.contains(newText, true) }
+                    transferUserAdapter.submitList(newList)
+                    true
+                } else {
+                    transferUserAdapter.submitList(profilesList)
+                    false
+                }
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextCleared(): Boolean {
+                return false
+            }
+        })
+
+        binding.searchView.setOnSearchViewListener(object : SimpleSearchView.SearchViewListener {
+            override fun onSearchViewShown() {
+            }
+
+            override fun onSearchViewClosed() {
+                transferUserAdapter.submitList(profilesList)
+            }
+
+            override fun onSearchViewShownAnimation() {
+            }
+
+            override fun onSearchViewClosedAnimation() {
+            }
+        })
+    }
+
+    private fun initRecyclerView() {
         transferUserAdapter = TransferUserAdapter { userSelected ->
             Toast.makeText(requireContext(), userSelected.name, Toast.LENGTH_SHORT).show()
         }
@@ -56,22 +106,32 @@ class TransferUserListFragment : Fragment() {
 
     private fun getProfileList() {
         transferUserListViewModel.getProfileList().observe(viewLifecycleOwner) { stateView ->
-            when(stateView) {
+            when (stateView) {
                 is StateView.Loading -> {
                     binding.progressBar.isVisible = true
 
                 }
+
                 is StateView.Sucess -> {
+                    profilesList = stateView.data ?: emptyList()
                     binding.progressBar.isVisible = false
                     transferUserAdapter.submitList(stateView.data)
 
                 }
+
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
                     showBottomSheet(message = stateView.message)
                 }
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_search, menu)
+        val item = menu.findItem(R.id.action_search)
+        binding.searchView.setMenuItem(item)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onDestroyView() {
