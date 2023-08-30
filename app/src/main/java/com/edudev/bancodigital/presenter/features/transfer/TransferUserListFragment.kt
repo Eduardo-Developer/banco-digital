@@ -94,7 +94,7 @@ class TransferUserListFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        transferUserAdapter = TransferUserAdapter { userSelected ->
+        transferUserAdapter = TransferUserAdapter(context) { userSelected ->
             Toast.makeText(requireContext(), userSelected.name, Toast.LENGTH_SHORT).show()
         }
 

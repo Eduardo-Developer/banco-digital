@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.edudev.bancodigital.R
@@ -21,6 +23,7 @@ import com.edudev.bancodigital.util.BaseFragment
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.initToolbar
 import com.edudev.bancodigital.util.showBottomSheet
+import com.example.bancodigital.util.MoneyTextWatcher
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,23 +55,35 @@ class RechargeFormFragment : BaseFragment() {
     }
 
     private fun initListener() {
+        with(binding.editTextDepositAmount) {
+            addTextChangedListener(MoneyTextWatcher(binding.editTextDepositAmount))
+            addTextChangedListener {
+                if (MoneyTextWatcher.getValueUnMasked(this) > 100) {
+                    this.setText("R$ 0,00")
+                }
+            }
+
+            doAfterTextChanged {
+                this.text?.length?.let {this.setSelection(it) }
+            }
+        }
         binding.btnContinue.setOnClickListener {
             validateData()
         }
     }
 
     private fun validateData() {
-        val amount = binding.editTextDepositAmount.text.toString().trim()
+        val amount = MoneyTextWatcher.getValueUnMasked(binding.editTextDepositAmount)
         val phone = binding.editPhone.unMaskedText
 
-        if (amount.isNotEmpty()) {
+        if (amount >= 10f) {
             if (phone?.isNotEmpty() == true) {
                 if (phone.length == 11) {
 
                     hideKeyboard()
 
                     val recharge = Recharge(
-                        amount = amount.toFloat(),
+                        amount = amount,
                         number = phone
                     )
                     saveRecharge(recharge)
@@ -80,7 +95,7 @@ class RechargeFormFragment : BaseFragment() {
                 showBottomSheet(message = getString(R.string.text_phone_valid))
             }
         } else {
-            showBottomSheet(message = "Digite um valor")
+            showBottomSheet(message = getString(R.string.text_invalid_recharge_value_receipt_fragment))
         }
     }
 

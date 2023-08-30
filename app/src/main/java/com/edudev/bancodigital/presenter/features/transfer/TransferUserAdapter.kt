@@ -1,18 +1,24 @@
 package com.edudev.bancodigital.presenter.features.transfer
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.data.model.User
 import com.edudev.bancodigital.databinding.TransferUserItemBinding
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
+import java.lang.Exception
 
 
 class TransferUserAdapter(
-    private val userSelected: (User) -> Unit
+    private val context: Context?,
+    private val userSelected: (User) -> Unit,
 ) : ListAdapter<User, TransferUserAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -47,22 +53,40 @@ class TransferUserAdapter(
 
         val user = getItem(position)
         loadImageUser(holder, user)
-
         holder.binding.textUserName.text = user.name
         holder.itemView.setOnClickListener{
             userSelected(user)
         }
-
     }
 
     private fun loadImageUser(holder: ViewHolder, user: User) {
+        val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
+
         if (user.image.isNotEmpty()) {
             Picasso.get()
-                .load(user?.image)
+                .load(user.image)
                 .fit().centerCrop()
-                .into(holder.binding.userImage)
+                .into(holder.binding.userImage, object : Callback {
+                    override fun onSuccess() {
+                        with(holder.binding) {
+                            progressBarListImageTransfer.isVisible = false
+                            userImage.startAnimation(fadeInAnimation)
+                            userImage.isVisible = true
+                        }
+                    }
+
+                    override fun onError(e: Exception?) {
+
+                    }
+
+                })
         } else {
-            holder.binding.userImage.setImageResource(R.drawable.ic_user_fill)
+            with(holder.binding) {
+                progressBarListImageTransfer.isVisible = false
+                userImage.startAnimation(fadeInAnimation)
+                userImage.isVisible = true
+                userImage.setImageResource(R.drawable.profile_svg)
+            }
         }
     }
 
