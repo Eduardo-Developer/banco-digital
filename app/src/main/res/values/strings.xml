@@ -88,6 +88,8 @@
     <string name="text_amount_transaction_recharge_receipt_fragment">Valor recarga</string>
     <string name="text_amount_phone_recharge_receipt_fragment">Número</string>
     <string name="text_btn_transaction_recharge_receipt_fragment">continuar</string>
+    <string name="text_invalid_recharge_value_receipt_fragment">Por Favor, digite um valor maior ou igual a R$: 10,00</string>
+
 
     <!--    RechargeFormFragment-->
     <string name="text_title_toolbar_recharge_form_fragment">Recarga</string>

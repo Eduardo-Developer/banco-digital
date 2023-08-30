@@ -8,16 +8,31 @@
     android:paddingBottom="8dp"
     android:paddingHorizontal="16dp">
 
-    <io.woong.shapedimageview.CircleImageView
-        android:id="@+id/user_image"
+    <FrameLayout
+        android:id="@+id/frame_transfer"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:border_size="2dp"
-        app:border_color="@color/white"
-        tools:src="@drawable/image_user"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <io.woong.shapedimageview.CircleImageView
+            android:id="@+id/user_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:border_color="@color/white"
+            android:visibility="invisible"
+            app:border_size="2dp"
+            tools:src="@drawable/image_user" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_list_image_transfer"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/white" />
+
+    </FrameLayout>
+
 
     <TextView
         android:id="@+id/text_user_name"

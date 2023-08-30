@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.edudev.bancodigital.data.enum.TransactionOperation
@@ -17,6 +19,7 @@ import com.edudev.bancodigital.util.BaseFragment
 import com.edudev.bancodigital.util.StateView
 import com.edudev.bancodigital.util.initToolbar
 import com.edudev.bancodigital.util.showBottomSheet
+import com.example.bancodigital.util.MoneyTextWatcher
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -43,18 +46,29 @@ class DepositFormFragment : BaseFragment() {
     }
 
     private fun initListener() {
+        with(binding.editTextDepositAmount) {
+            addTextChangedListener(MoneyTextWatcher(binding.editTextDepositAmount))
+            addTextChangedListener {
+                if (MoneyTextWatcher.getValueUnMasked(this) > 99999.99F) {
+                    this.setText("R$ 0,00")
+                }
+            }
+
+            doAfterTextChanged {
+                this.text?.length?.let {this.setSelection(it) }
+            }
+        }
         binding.btnContinue.setOnClickListener { validadeDeposit() }
     }
 
     private fun validadeDeposit() {
-        val amount = binding.editTextDepositAmount.text.toString().trim()
-
-        if (amount.isNotEmpty()) {
+        val amount = MoneyTextWatcher.getValueUnMasked(binding.editTextDepositAmount)
+        if (amount > 0) {
             val deposit = Deposit(amount = amount.toFloat())
             saveDeposit(deposit)
             hideKeyboard()
         } else {
-            Toast.makeText(requireContext(), "Digite um valor", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), "Digite um valor maior que R$: 0,00", Toast.LENGTH_LONG).show()
         }
     }
 
