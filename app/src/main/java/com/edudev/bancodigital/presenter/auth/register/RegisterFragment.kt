@@ -1,23 +1,18 @@
 package com.edudev.bancodigital.presenter.auth.register
 
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Phone
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.data.model.User
-import com.edudev.bancodigital.data.model.Wallet
-import com.edudev.bancodigital.databinding.FragmentRecoverBinding
 import com.edudev.bancodigital.databinding.FragmentRegisterBinding
 import com.edudev.bancodigital.presenter.profile.ProfileViewModel
-import com.edudev.bancodigital.presenter.wallet.WalletViewModel
 import com.edudev.bancodigital.util.BaseFragment
 import com.edudev.bancodigital.util.FirebaseHelper
 import com.edudev.bancodigital.util.StateView
@@ -32,7 +27,6 @@ class RegisterFragment : BaseFragment() {
 
     private val registerViewModel : RegisterViewModel by viewModels()
     private val profileViewModel : ProfileViewModel by viewModels()
-    private val walletViewModel : WalletViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -114,28 +108,9 @@ class RegisterFragment : BaseFragment() {
                 is StateView.Loading -> {}
 
                 is StateView.Sucess -> {
-                    initWallet()
-                }
-
-                is StateView.Error -> {
                     binding.progressRegister.isVisible = false
-                    Log.i("INFOTESTE", "loginUser: ${stateView.message}")
-                    showBottomSheet(message = getString(FirebaseHelper.validError(stateView.message ?: "")))
-                }
-            }
-        }
-    }
-
-    private fun initWallet(){
-        walletViewModel.initWallet(Wallet(
-            userId = FirebaseHelper.getUserId()
-        )).observe(viewLifecycleOwner) { stateView ->
-            when (stateView) {
-                is StateView.Loading -> {}
-
-                is StateView.Sucess -> {
-                    binding.progressRegister.isVisible = false
-                    findNavController().navigate(R.id.action_global_homeFragment)
+                    val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build()
+                    findNavController().navigate(R.id.action_global_homeFragment, null, navOptions)
                 }
 
                 is StateView.Error -> {

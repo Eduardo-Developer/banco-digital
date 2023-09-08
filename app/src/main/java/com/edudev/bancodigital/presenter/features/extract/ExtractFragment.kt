@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.edudev.bancodigital.MainGraphDirections
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.data.enum.TransactionOperation
 import com.edudev.bancodigital.databinding.FragmentExtractBinding
@@ -23,9 +24,7 @@ class ExtractFragment : Fragment() {
 
     private var _binding: FragmentExtractBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var transactionsAdapter: TransactionsAdapter
-
     private val extractViewModel : ExtractViewModel by viewModels()
 
     override fun onCreateView(
@@ -63,18 +62,22 @@ class ExtractFragment : Fragment() {
         }
     }
 
-
     private fun configRecyclerView() {
         transactionsAdapter = TransactionsAdapter(requireContext()) { transaction ->
 
             when(transaction.operation) {
                 TransactionOperation.DEPOSIT -> {
-                    val action = ExtractFragmentDirections.actionExtractFragmentToDepositReceiptFragment(transaction.id, true)
+                    val action = MainGraphDirections.actionGlobalDepositReceiptFragment(transaction.id, true)
+                    findNavController().navigate(action)
+                }
+
+                TransactionOperation.TRANSFER -> {
+                    val action = MainGraphDirections.actionGlobalTransferReceiptFragment(transaction.id, true)
                     findNavController().navigate(action)
                 }
 
                 TransactionOperation.RECHARGE -> {
-                    val action = ExtractFragmentDirections.actionExtractFragmentToRechargeReceiptFragment(transaction.id)
+                    val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id)
                     findNavController().navigate(action)
                 }
 
@@ -93,6 +96,4 @@ class ExtractFragment : Fragment() {
         _binding = null
 
     }
-
-
 }

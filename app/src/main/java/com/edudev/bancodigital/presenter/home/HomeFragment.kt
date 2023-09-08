@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.edudev.bancodigital.MainGraphDirections
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.data.enum.TransactionOperation
 import com.edudev.bancodigital.data.enum.TransactionType
@@ -58,13 +60,17 @@ class HomeFragment : BaseFragment() {
 
             when(transaction.operation) {
                 TransactionOperation.DEPOSIT -> {
-                    val action = HomeFragmentDirections.actionHomeFragmentToDepositReceiptFragment(transaction.id, true)
+                    val action = MainGraphDirections.actionGlobalDepositReceiptFragment(transaction.id, true)
+                    findNavController().navigate(action)
+                }
 
+                TransactionOperation.TRANSFER -> {
+                    val action = MainGraphDirections.actionGlobalTransferReceiptFragment(transaction.id, true)
                     findNavController().navigate(action)
                 }
 
                 TransactionOperation.RECHARGE -> {
-                    val action = HomeFragmentDirections.actionHomeFragmentToRechargeReceiptFragment(transaction.id)
+                    val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id)
                     findNavController().navigate(action)
                 }
 
@@ -80,22 +86,26 @@ class HomeFragment : BaseFragment() {
 
     private fun configData(user: User) {
         val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        if (user.image.isNotEmpty()) {
+            Picasso.get()
+                .load(user.image)
+                .fit().centerCrop()
+                .into(binding.imageUser, object : Callback {
+                    override fun onSuccess() {
+                        binding.progressImage.isVisible = false
+                        binding.imageUser.startAnimation(fadeInAnimation)
+                        binding.imageUser.isVisible = true
+                    }
 
-        Picasso.get()
-            .load(user.image)
-            .tag(tagPicasso)
-            .fit().centerCrop()
-            .into(binding.imageUser, object : Callback {
-                override fun onSuccess() {
-                    binding.progressImage.isVisible = false
-                    binding.imageUser.startAnimation(fadeInAnimation)
-                    binding.imageUser.isVisible = true
-                }
-
-                override fun onError(e: Exception?) {
-                }
-
-            })
+                    override fun onError(e: java.lang.Exception?) {
+                    }
+                })
+        } else {
+            binding.imageUser.setImageResource(R.drawable.ic_user_place_holder)
+            binding.progressImage.isVisible = false
+            binding.imageUser.startAnimation(fadeInAnimation)
+            binding.imageUser.isVisible = true
+        }
 
     }
 
@@ -129,7 +139,9 @@ class HomeFragment : BaseFragment() {
         }
         binding.btnLogout.setOnClickListener {
             FirebaseHelper.getAuth().signOut()
-            findNavController().navigate(R.id.action_homeFragment_to_authentication)
+
+            val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(R.id.homeFragment, true).build()
+            findNavController().navigate(R.id.action_global_authentication, null, navOptions)
         }
         binding.btnShowAll.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_extractFragment)
