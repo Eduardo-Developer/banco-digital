@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.edudev.bancodigital.MainGraphDirections
 import com.edudev.bancodigital.R
 import com.edudev.bancodigital.data.enum.TransactionOperation
 import com.edudev.bancodigital.data.enum.TransactionType
@@ -139,7 +140,7 @@ class RechargeFormFragment : BaseFragment() {
 
                     is StateView.Sucess -> {
                         binding.progressBar.isVisible = false
-                        val action = RechargeFormFragmentDirections.actionRechargeFormFragmentToRechargeReceiptFragment(recharge.id)
+                        val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id)
                         findNavController().navigate(action)
                     }
 

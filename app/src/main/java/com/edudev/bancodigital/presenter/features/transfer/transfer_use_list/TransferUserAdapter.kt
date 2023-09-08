@@ -1,4 +1,4 @@
-package com.edudev.bancodigital.presenter.features.transfer
+package com.edudev.bancodigital.presenter.features.transfer.transfer_use_list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -85,7 +85,7 @@ class TransferUserAdapter(
                 progressBarListImageTransfer.isVisible = false
                 userImage.startAnimation(fadeInAnimation)
                 userImage.isVisible = true
-                userImage.setImageResource(R.drawable.profile_svg)
+                userImage.setImageResource(R.drawable.ic_user_place_holder)
             }
         }
     }

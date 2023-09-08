@@ -10,6 +10,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.edudev.bancodigital.MainGraphDirections
 import com.edudev.bancodigital.data.enum.TransactionOperation
 import com.edudev.bancodigital.data.enum.TransactionType
 import com.edudev.bancodigital.data.model.Deposit
@@ -63,7 +64,7 @@ class DepositFormFragment : BaseFragment() {
 
     private fun validadeDeposit() {
         val amount = MoneyTextWatcher.getValueUnMasked(binding.editTextDepositAmount)
-        if (amount > 0) {
+        if (amount > 0f) {
             val deposit = Deposit(amount = amount.toFloat())
             saveDeposit(deposit)
             hideKeyboard()
@@ -112,8 +113,8 @@ class DepositFormFragment : BaseFragment() {
 
                     is StateView.Sucess -> {
                         binding.progressBar.isVisible = false
-                        val action = DepositFormFragmentDirections
-                            .actionDepositFormFragmentToDepositReceiptFragment(deposit.id, false)
+                        val action = MainGraphDirections
+                            .actionGlobalDepositReceiptFragment(deposit.id, false)
 
                         findNavController().navigate(action)
                     }

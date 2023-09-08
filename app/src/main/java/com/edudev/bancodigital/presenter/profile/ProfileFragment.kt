@@ -141,7 +141,7 @@ class ProfileFragment : BaseFragment() {
         permissionlistener: PermissionListener,
         permission: String,
         message: Int
-    ){
+    ) {
         TedPermission.create()
             .setPermissionListener(permissionlistener)
             .setDeniedTitle("Permissão negada")
@@ -153,7 +153,7 @@ class ProfileFragment : BaseFragment() {
 
     }
 
-    private fun showBottomSheetImage(){
+    private fun showBottomSheetImage() {
         val bottomSheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
         val bottomSheetBinding: LayoutBottomSheetImageProfileBinding =
             LayoutBottomSheetImageProfileBinding.inflate(layoutInflater, null, false)
@@ -175,7 +175,7 @@ class ProfileFragment : BaseFragment() {
     private fun saveImageProfile() {
         imageProfile?.let { image ->
             viewModel.saveImageProfile(image).observe(viewLifecycleOwner) { stateView ->
-                when(stateView) {
+                when (stateView) {
                     is StateView.Loading -> {
                         binding.progressBar.isVisible = true
                     }
@@ -267,7 +267,11 @@ class ProfileFragment : BaseFragment() {
         try {
             photoFile = createImageFile()
         } catch (ex: IOException) {
-            Toast.makeText(requireContext(), "Não foi possível abrir a câmera do dispositivo", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Não foi possível abrir a câmera do dispositivo",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         if (photoFile != null) {
@@ -343,20 +347,26 @@ class ProfileFragment : BaseFragment() {
 
     private fun configData() {
         val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        if (user?.image?.isNotEmpty() == true) {
+            Picasso.get()
+                .load(user?.image)
+                .fit().centerCrop()
+                .into(binding.imageUser, object : Callback {
+                    override fun onSuccess() {
+                        binding.progressImage.isVisible = false
+                        binding.imageUser.startAnimation(fadeInAnimation)
+                        binding.imageUser.isVisible = true
+                    }
 
-        Picasso.get()
-            .load(user?.image)
-            .fit().centerCrop()
-            .into(binding.imageUser, object : Callback {
-                override fun onSuccess() {
-                    binding.progressImage.isVisible = false
-                    binding.imageUser.startAnimation(fadeInAnimation)
-                    binding.imageUser.isVisible = true
-                }
-
-                override fun onError(e: java.lang.Exception?) {
-                }
-            })
+                    override fun onError(e: java.lang.Exception?) {
+                    }
+                })
+        } else {
+            binding.imageUser.setImageResource(R.drawable.ic_user_place_holder)
+            binding.progressImage.isVisible = false
+            binding.imageUser.startAnimation(fadeInAnimation)
+            binding.imageUser.isVisible = true
+        }
 
         binding.editName.setText(user?.name)
         binding.editPhone.setText(user?.phone)

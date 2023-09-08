@@ -90,6 +90,31 @@
     <string name="text_btn_transaction_recharge_receipt_fragment">continuar</string>
     <string name="text_invalid_recharge_value_receipt_fragment">Por Favor, digite um valor maior ou igual a R$: 10,00</string>
 
+    <!--    TransferConfirmFragment-->
+    <string name="text_title_toolbar_confirm_transfer_confirm_fragment">Transferencia</string>
+    <string name="text_message_transfer_confirm_fragment">Confirme os dados antes de concluir a transferência</string>
+    <string name="text_sub_transfer_confirm_fragment">Após confirmar transferência, não\n será possível desfazê-la</string>
+    <string name="text_label_user_transfer_confirm_fragment">Beneficiado:</string>
+    <string name="text_label_transfer_confirm_fragment">Valor transferido</string>
+    <string name="text_label_transfer_date_confirm_fragment">Data transferência</string>
+    <string name="text_button_confirm_transfer_fragment">Confirmar</string>
+
+    <!--    TransferFormFragment-->
+    <string name="text_title_toolbar_confirm_transfer_form_fragment">Transferencia</string>
+    <string name="text_label_amount_transfer_form_fragment">Informe o valor a ser transferido</string>
+    <string name="text_button_continue_transfer_fragment">Continuar</string>
+    <string name="text_message_empty_amount_transfer_fragment">Digite um valor maior que R$: 0,00</string>
+
+    <!--    TransferReceiptFragment-->
+    <string name="text_title_toolbar_confirm_transfer_receipt_fragment">Recibo</string>
+    <string name="text_label_transfer_receipt_fragment">Valor transferido</string>
+    <string name="text_label_transfer_date_receipt_fragment">Data transferência</string>
+    <string name="text_label_user_received_transfer_confirm_fragment">Receberá a transferência:</string>
+    <string name="text_label_user_sent_transfer_confirm_fragment">Enviou a transferência:</string>
+    <string name="text_message_sucess_transfer_receipt_fragment">Transferência efetuada \ncom sucesso!</string>
+    <string name="text_message_transfer_received_sucess_transfer_receipt_fragment">Transferência recebida \ncom sucesso!</string>
+    <string name="text_sub_transfer_receipt_fragment">Transferência realizada com sucesso! A previsão de crédito na conta destino é de até 30 minutos.</string>
+    <string name="text_button_confirm_transfer_receipt_fragment">Continuar</string>
 
     <!--    RechargeFormFragment-->
     <string name="text_title_toolbar_recharge_form_fragment">Recarga</string>

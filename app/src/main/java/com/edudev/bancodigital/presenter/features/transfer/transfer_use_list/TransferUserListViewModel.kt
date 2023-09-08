@@ -1,4 +1,4 @@
-package com.edudev.bancodigital.presenter.features.transfer
+package com.edudev.bancodigital.presenter.features.transfer.transfer_use_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

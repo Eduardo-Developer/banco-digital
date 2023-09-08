@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetProfileUseCase @Inject constructor(
     private val profileDataSourceImpl: ProfileDataSourceImpl
 ) {
-    suspend operator fun invoke() : User {
-        return profileDataSourceImpl.getProfile()
+    suspend operator fun invoke(id: String) : User {
+        return profileDataSourceImpl.getProfile(id)
     }
 }

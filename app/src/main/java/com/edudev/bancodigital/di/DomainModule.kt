@@ -8,6 +8,8 @@ import com.edudev.bancodigital.data.repository.recharge.RechargeDataSource
 import com.edudev.bancodigital.data.repository.recharge.RechargeDataSourceImpl
 import com.edudev.bancodigital.data.repository.transaction.TransactionDataSource
 import com.edudev.bancodigital.data.repository.transaction.TransactionDataSourceImpl
+import com.edudev.bancodigital.data.repository.transfer.TransferDataSource
+import com.edudev.bancodigital.data.repository.transfer.TransferDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -36,4 +38,9 @@ abstract class DomainModule {
     abstract fun bindsRechargeDataSource(
         rechargeDataSourceImpl: RechargeDataSourceImpl
     ): RechargeDataSource
+
+    @Binds
+    abstract fun bindsTransferDataSource(
+        transferDataSourceImpl: TransferDataSourceImpl
+    ): TransferDataSource
 }

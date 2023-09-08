@@ -3,7 +3,6 @@ package com.edudev.bancodigital.presenter.features.extract
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.edudev.bancodigital.domain.transaction.GetTransactionsUseCase
-import com.edudev.bancodigital.domain.wallet.GetWalletUseCase
 import com.edudev.bancodigital.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
