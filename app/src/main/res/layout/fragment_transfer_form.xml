@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.Dark"
+    android:background="@color/background_app"
     tools:context=".presenter.features.transfer.transfer_confirm.TransferFormFragment">
 
     <ScrollView
@@ -56,7 +57,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/text_label_amount_transfer_form_fragment"
-                android:textColor="@color/white"
+                android:textColor="@android:color/tab_indicator_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -66,10 +67,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:backgroundTint="@color/white"
-                android:inputType="numberDecimal"
+                android:backgroundTint="@android:color/tab_indicator_text"
+                android:inputType="numberDecimal|textNoSuggestions"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@android:color/tab_indicator_text"
                 android:textSize="30sp"
                 android:text="R$ 0,00"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +85,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                android:indeterminateTint="@color/white"
+                android:indeterminateTint="@color/color_default"
                 android:layout_marginTop="8dp"
                 android:visibility="invisible"
                 app:layout_constraintTop_toBottomOf="@+id/editTextDepositAmount" />
@@ -98,10 +99,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/bg_btn"
-        android:backgroundTint="@color/color_default"
+        app:backgroundTint="@color/color_default"
         android:text="@string/text_button_continue_transfer_fragment"
-        android:textColor="@color/color_default"
-        app:backgroundTint="@color/white"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

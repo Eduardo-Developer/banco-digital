@@ -56,7 +56,9 @@ class TransferConfirmFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.btnConfirmTransfer.setOnClickListener { getBalance() }
+        binding.btnConfirmTransfer.setOnClickListener {
+            binding.btnConfirmTransfer.isEnabled = false
+            getBalance() }
     }
 
     private fun configData() {
@@ -183,11 +185,13 @@ class TransferConfirmFragment : Fragment() {
                         )
                         saveTransfer(transfer = transfer)
                     } else {
+                        binding.btnConfirmTransfer.isEnabled = true
                         showBottomSheet(message = "Saldo insuficiente!")
                     }
                 }
 
                 is StateView.Error -> {
+                    binding.btnConfirmTransfer.isEnabled = true
                     binding.progressConfirmTransfer.isVisible = false
                     showBottomSheet(message = stateView.message)
                 }

@@ -68,7 +68,7 @@
     <!--    Home Fragment-->
     <string name="text_formated_value">R$: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_message_empty_transaction_home_fragment">Nenhuma transação efetuada</string>
 
     <!--    DepositReceiptFragment-->
     <string name="text_title_toolbar_deposit_receipt_fragment">Recibo</string>
@@ -127,9 +127,13 @@
     <!--    ExtractFragment-->
 
     <string name="text_title_toolbar_exctract_fragment">Extrato</string>
+    <string name="text_message_empty_transaction_extract_fragment">Nenhuma transação efetuada</string>
+
 
     <!--    TransferUserListFragment-->
     <string name="text_title_toolbar_transfer_user_list_fragment">Usuários</string>
+    <string name="text_message_empty_user_transfer_user_list_fragment">Nenhum usuário encontrado</string>
+
 
 
 

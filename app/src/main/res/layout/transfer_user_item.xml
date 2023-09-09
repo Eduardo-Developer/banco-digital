@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    android:paddingHorizontal="16dp">
+    android:background="@color/white">
 
     <FrameLayout
         android:id="@+id/frame_transfer"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -19,7 +20,7 @@
             android:id="@+id/user_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            app:border_color="@color/white"
+            app:border_color="#E3E3E3"
             android:visibility="invisible"
             app:border_size="2dp"
             tools:src="@drawable/image_user" />
@@ -29,7 +30,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/white" />
+            android:indeterminateTint="@color/color_default" />
 
     </FrameLayout>
 
@@ -38,15 +39,25 @@
         android:id="@+id/text_user_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/white"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/tab_indicator_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frame_transfer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.508"
+        tools:text="Carlos Eduardo" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="?actionBarDivider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/user_image"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.506"
-        tools:text="Carlos Eduardo" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame_transfer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

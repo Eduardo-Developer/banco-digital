@@ -52,7 +52,8 @@ class ExtractFragment : Fragment() {
                 }
                 is StateView.Sucess -> {
                     binding.progressBar.isVisible = false
-                    transactionsAdapter.submitList(stateView.data?.reversed()?.take(6))
+                    binding.textMessage.isVisible = stateView.data?.isEmpty() == true
+                    transactionsAdapter.submitList(stateView.data?.reversed())
                 }
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
@@ -77,7 +78,7 @@ class ExtractFragment : Fragment() {
                 }
 
                 TransactionOperation.RECHARGE -> {
-                    val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id)
+                    val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id, true)
                     findNavController().navigate(action)
                 }
 

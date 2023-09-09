@@ -140,7 +140,7 @@ class RechargeFormFragment : BaseFragment() {
 
                     is StateView.Sucess -> {
                         binding.progressBar.isVisible = false
-                        val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id)
+                        val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id, false)
                         findNavController().navigate(action)
                     }
 

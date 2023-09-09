@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.edudev.bancodigital.R
@@ -53,7 +54,12 @@ class TransferReceiptFragment : Fragment() {
 
     private fun initListener() {
         binding.btnContinueTransfer.setOnClickListener {
-            findNavController().popBackStack()
+            if (args.homeAsUpEnabled) {
+                findNavController().popBackStack()
+            } else {
+                val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(R.id.transferUserListFragment, true).build()
+                findNavController().navigate(R.id.action_global_homeFragment, null, navOptions)
+            }
         }
     }
 
