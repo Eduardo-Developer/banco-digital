@@ -70,7 +70,7 @@ class HomeFragment : BaseFragment() {
                 }
 
                 TransactionOperation.RECHARGE -> {
-                    val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id)
+                    val action = MainGraphDirections.actionGlobalRechargeReceiptFragment(transaction.id, true)
                     findNavController().navigate(action)
                 }
 
@@ -118,6 +118,8 @@ class HomeFragment : BaseFragment() {
                 is StateView.Sucess -> {
                     binding.progressBar.isVisible = false
                     transactionsAdapter.submitList(stateView.data?.reversed()?.take(6))
+
+                    binding.textMessage.isVisible = stateView.data?.isEmpty() == true
                     showBalance(stateView.data ?: emptyList())
                 }
                 is StateView.Error -> {

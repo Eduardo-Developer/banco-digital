@@ -27,7 +27,7 @@ fun Fragment.showBottomSheet(
     val bottomSheetBinding: LayoutBottomSheetBinding = LayoutBottomSheetBinding.inflate(layoutInflater, null, false)
 
     bottomSheetBinding.textTitle.text = getString(titleDialog ?: R.string.text_title_bottom_sheet)
-    bottomSheetBinding.textMessage.text = message ?: getText(R.string.text_error_generic)
+    bottomSheetBinding.textMessage.text = message ?: getString(R.string.text_error_generic)
     bottomSheetBinding.btnOk.text = getString(titleButton ?: R.string.text_button_bottom_sheet)
 
     bottomSheetBinding.btnOk.setOnClickListener {

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.edudev.bancodigital.R
@@ -65,7 +66,12 @@ class DepositReceiptFragment : Fragment() {
 
     private fun initListener() {
         binding.btnContinue.setOnClickListener {
-            findNavController().popBackStack()
+            if (args.homeAsUpEnabled) {
+                findNavController().popBackStack()
+            } else {
+                val navOptions: NavOptions = NavOptions.Builder().setPopUpTo(R.id.depositFormFragment, true).build()
+                findNavController().navigate(R.id.action_global_homeFragment, null, navOptions)
+            }
         }
     }
 

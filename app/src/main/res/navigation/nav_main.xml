@@ -96,6 +96,9 @@
         <argument
             android:name="idRecharge"
             app:argType="string" />
+        <argument
+            android:name="homeAsUpEnabled"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/transferUserListFragment"

@@ -17,7 +17,7 @@
     </style>
 
     <style name="Theme.Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlActivated">@color/color_default</item>
     </style>
 
     <style name="Theme.EditText" parent="Theme.MaterialComponents.DayNight.NoActionBar">
@@ -26,6 +26,10 @@
         <item name="android:textColorHint">@color/color_hint</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/color_default</item>
+    </style>
+
+    <style name="ThemeScreenConfirm" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/color_sucess</item>
     </style>
 
     <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
@@ -41,8 +45,8 @@
         <item name="searchBackground">@drawable/bg_search_toolbar</item>
         <item name="android:inputType">text</item>
         <item name="android:hint">@string/search_hint</item>
-        <item name="hintColor">@color/color_hint</item>
-        <item name="backIconTint">@color/white</item>
+        <item name="hintColor">@color/default_textColorHint</item>
+        <item name="backIconTint">@color/color_default</item>
         <item name="android:textColor">@color/white</item>
         <item name="iconsTint">@color/white</item>
     </style>
