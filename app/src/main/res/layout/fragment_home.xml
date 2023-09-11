@@ -21,7 +21,6 @@
             android:layout_height="match_parent"
             android:padding="16dp">
 
-
             <FrameLayout
                 android:id="@+id/frame_image"
                 android:layout_width="80dp"
@@ -42,53 +41,73 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:indeterminateTint="@color/white"/>
+                    android:indeterminateTint="@color/white" />
 
             </FrameLayout>
 
-            <TextView
-                android:id="@+id/text_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                android:text="@string/text_message_empty_transaction_home_fragment"
-                app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
-                app:layout_constraintEnd_toEndOf="@+id/materialCardView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/materialCardView" />
+
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tvSaldo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="Meu Saldo"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frame_image" />
 
-            <TextView
-                android:id="@+id/text_balance"
+            <ImageView
+                android:id="@+id/btn_show_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Meu Saldo"
-                android:textColor="@color/white"
-                android:textSize="30sp"
+                android:layout_marginStart="8dp"
+                android:padding="4dp"
+                android:src="@drawable/visibility_white_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvSaldo"
+                app:layout_constraintStart_toEndOf="@+id/tvSaldo"
+                app:layout_constraintTop_toTopOf="@+id/tvSaldo" />
+
+            <FrameLayout
+                android:id="@+id/frame"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                tools:text="R$: 270,00" />
+                app:layout_constraintTop_toBottomOf="@+id/tvSaldo">
+
+                <TextView
+                    android:id="@+id/text_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Meu Saldo"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSaldo"
+                    tools:text="R$: 270,00" />
+
+                <ImageView
+                    android:id="@+id/pin_code_balance"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/pin_code"
+                    app:layout_constraintStart_toStartOf="@+id/tvSaldo"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSaldo" />
+
+            </FrameLayout>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Últimas 6 atividades"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_balance"
+                app:layout_constraintTop_toBottomOf="@id/frame"
                 tools:text="Últimas 6 atividades" />
 
             <TextView
@@ -98,21 +117,22 @@
                 android:text="Ver todas"
                 android:textColor="@color/white"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView3"
                 tools:text="Ver todas" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
                 app:cardCornerRadius="10dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4">
+                app:layout_constraintTop_toBottomOf="@id/textView3">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -124,6 +144,18 @@
                         android:layout_height="match_parent"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:listitem="@layout/transaction_item" />
+
+                    <TextView
+                        android:id="@+id/text_message"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:text="@string/text_message_empty_transaction_home_fragment"
+                        android:textColor="@android:color/tab_indicator_text"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/rv_transactions" />
 
                     <ProgressBar
                         android:id="@+id/progressBar"

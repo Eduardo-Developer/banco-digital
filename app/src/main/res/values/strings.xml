@@ -79,6 +79,12 @@
     <string name="text_amount_transaction_deposit_receipt_fragment">Valor depósito</string>
     <string name="text_btn_transaction_deposit_receipt_fragment">continuar</string>
 
+    <!--    DepositFormFragment-->
+    <string name="text_title_edit_deposit_form_fragment">Informe o valor a ser depositado</string>
+    <string name="text_btn_deposit_form_fragment">Confirmar</string>
+    <string name="text_title_deposit_form_fragment">Depositar</string>
+
+
     <!--    RechargeReceiptFragment-->
     <string name="text_title_toolbar_recharge_receipt_fragment">Recibo</string>
     <string name="text_title_recharge_receipt_fragment">Recarga efetuada\n com sucesso!</string>
@@ -122,10 +128,10 @@
     <string name="text_label_phone_number_form_recharge_fragment">Insira o número</string>
     <string name="text_hint_phone_number_recharge_form_fragment">Número</string>
     <string name="text_btn_recharge_form_fragment">Confirmar</string>
+    <string name="text_edit_recharge_form_fragment">Informe o valor da recarga</string>
 
 
     <!--    ExtractFragment-->
-
     <string name="text_title_toolbar_exctract_fragment">Extrato</string>
     <string name="text_message_empty_transaction_extract_fragment">Nenhuma transação efetuada</string>
 
