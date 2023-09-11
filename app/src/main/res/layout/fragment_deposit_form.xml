@@ -21,7 +21,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Depositar"
+                    android:text="@string/text_title_deposit_form_fragment"
                     android:textColor="@color/white" />
             </androidx.appcompat.widget.Toolbar>
 
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="32dp"
-                android:text="Informa o valor a ser depositado"
+                android:text="@string/text_title_edit_deposit_form_fragment"
                 android:textColor="@android:color/tab_indicator_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
         android:layout_margin="16dp"
         android:background="@drawable/bg_btn"
         app:backgroundTint="@color/color_default"
-        android:text="Confirmar"
+        android:text="@string/text_btn_deposit_form_fragment"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

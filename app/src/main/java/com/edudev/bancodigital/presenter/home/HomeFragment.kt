@@ -37,6 +37,7 @@ class HomeFragment : BaseFragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var transactionsAdapter: TransactionsAdapter
     private val tagPicasso = "tagPicasso"
+    private var isShowingBalance = false;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -131,6 +132,23 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initListener() {
+
+        binding.btnShowBalance.setOnClickListener{
+            if (isShowingBalance) {
+                binding.btnShowBalance.setImageResource(R.drawable.visibility_white_24dp)
+                binding.pinCodeBalance.isVisible = true
+                binding.textBalance.isVisible = false
+
+                isShowingBalance = false
+            } else {
+                binding.btnShowBalance.setImageResource(R.drawable.visibility_off_white_24dp)
+                binding.pinCodeBalance.isVisible = false
+                binding.textBalance.isVisible = true
+
+                isShowingBalance = true
+            }
+
+        }
 
         binding.cardTransfer.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_transferUserListFragment)
